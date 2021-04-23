@@ -1,0 +1,100 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid product">
+  <!-- left side -->
+  <div class="card col-5 float-left">
+      <!-- image area -->
+      <div id="product-carousel" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#product-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#product-carousel" data-slide-to="1"></li>
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block w-100 " src="{% static 'res/images/aibo.jpg' %}" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="{% static 'res/images/aibo (1).jpg' %}"  alt="Second slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#product-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+      </div>
+      <!-- <img class="card-img-top" src="/res/images/walle.png" alt="Card image cap"> -->
+
+      <div class="card-body">
+          <p class="product__price card-text float-left">₱140,518.99</p>
+          <div class="actions float-right">
+              <a href="#!" class="btn wish-color">Add to Wishlist</a>
+              <a href="#!" class="btn cart-color">Add to Cart</a>
+          </div>
+      </div>
+  </div>
+
+
+<div class="product__description col-6 float-left">
+
+    <h3> Aibo </h3> <!--This is the Product Name-->
+    <div id="accordion" role="tablist">
+        <div class="card">
+          <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+              <a class="product__details" data-toggle="collapse" href="#product-description" aria-expanded="true" aria-controls="product-description">
+                Product Description
+              </a>
+            </h5>
+          </div>
+      
+          <div id="product-description" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+            <div class="card-body">
+              A robot dog that has a longer lifespan than common dogs. Has all the functionalities and features of a dog (except is does not pee).
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="mb-0">
+              <a class="product__details" data-toggle="collapse" href="#product-features" aria-expanded="false" aria-controls="product-features">
+                Product Features
+              </a>
+            </h5>
+          </div>
+          <div id="product-features" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="card-body">
+              Life with Aibo
+              <br>
+              Overtime, this pup will get to know his name and respond to you when called.
+              Aibo is crazy about toys -especially pink ones.
+              Aibo listens to commands and will demonstrate a variety of tricks.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" role="tab" id="headingTwo">
+              <h5 class="mb-0">
+                <a class="product__details" data-toggle="collapse" href="#product-warranty" aria-expanded="false" aria-controls="product-warranty">
+                  Warranty
+                </a>
+              </h5>
+            </div>
+            <div id="product-warranty" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="card-body">
+                1 Year Manufacturing Warranty
+              </div>
+            </div>
+          </div>
+
+    </div>
+  </div>
+</div>  
+{% endblock content %}

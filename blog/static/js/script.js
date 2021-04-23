@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  $("#nav-template").load("/blog/templates/nav.html");
-  alert("test"); 
+	$("#nav-template").load("/blog/nav.html");
+	alert("test"); 
 });
 
 
@@ -15,8 +15,8 @@ $(document).ready(function(){
 
 // {% include "/blog/templates/blog/nav.html" %} 
 
-// $(document).ready( function() {
-// 	$("#nav-template").load('{% url"/blog/templates/blog/nav.html" %}')
+// $(document).ready(function() {
+// 	$("#nav-template").load('{% url navload %}');
 // });
 
 //{% include "main/includes/subtemplate.html" %} 

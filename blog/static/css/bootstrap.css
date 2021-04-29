@@ -60,7 +60,8 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  /* font-family: Roboto; */
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -5943,7 +5944,7 @@ button.close {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 15%;
+  width: 7%;
   color: #fff;
   text-align: center;
   opacity: 0.5;
@@ -5967,7 +5968,7 @@ button.close {
 }
 
 .carousel-control-prev {
-  left: 0;
+  left: -10;
   /* margin-left: 0; */
 }
 

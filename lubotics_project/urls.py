@@ -24,6 +24,12 @@ urlpatterns = [
     path('', include('blog.urls')), # use this when default page
     path('product/', blog_views.product, name='product'),
     path('products/', blog_views.products, name='products'),
+    path('contact/', blog_views.about, name='blog-about'),
+    path('changelog/', blog_views.chlog, name='blog-chlog'),
+    path('cart/', blog_views.cart, name='blog-cart'),
+    path('profile/', blog_views.profile, name='blog-profile'),
+    path('wishlist/', blog_views.wishlist, name='blog-wishlist'),
+    path('signup/', blog_views.signup, name='blog-signup'),
     path('register/', user_views.register, name='register'), #url for register
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'), #url for login
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'), #url for logout

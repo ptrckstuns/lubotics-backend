@@ -1,38 +1,21 @@
-$(document).ready(function(){
-	$("#nav-template").load("/blog/nav.html");
-	alert("test"); 
+
+$(function(){
+  $("#nav-template").load("/pages/templates/nav.html");
+});
+$(function(){
+  $("#nav-footer").load("/pages/templates/footer.html");
 });
 
+document.querySelector('.product-small-drones').addEventListener('mouseover', () => {
+  document.querySelector('#drones').classList.toggle('hide');
+}) 
+document.querySelector('.product-small-drones').addEventListener('mouseout', () => {
+  document.querySelector('#drones').classList.toggle('hide');
+}) 
 
-// $ (document).ready function(){
-//   // $("#nav-template").load("blog/templates/nav.html");
-//   alert("test);
-// });
-
-// $(document).ready(function(){
-//   $("#nav-template").load("/blog/templates/nav.html");
-// });
-
-// {% include "/blog/templates/blog/nav.html" %} 
-
-// $(document).ready(function() {
-// 	$("#nav-template").load('{% url navload %}');
-// });
-
-//{% include "main/includes/subtemplate.html" %} 
-
-// $(document).ready( function () {
-//     $('.myClass').load('{% url update_dropdown %}',
-//         {'kind': "Book" },
-//         function(data){
-//             alert(data);
-//      });    
-// });
-// $(function(){
-//   $("#nav-template").load(){
-//   	$.ajax({
-//   		url: "{% url 'blog/templates/blog/nav.html' %}",
-//   	});
-// }});
-
-//alert("test"); //working
+document.querySelector('.product-small-education').addEventListener('mouseover', () => {
+  document.querySelector('#education').classList.toggle('hide');
+}) 
+document.querySelector('.product-small-education').addEventListener('mouseout', () => {
+  document.querySelector('#education').classList.toggle('hide');
+}) 

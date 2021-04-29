@@ -1,0 +1,174 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+	<br><br>
+  <!-- about lubotics header -->
+  <center>
+  <section class = "about-lubotics">
+    <div class = "container p-1 p-sm-3">
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <h2 class = "display-4">About LUBOTICS</h2>
+          <hr/>
+        </div>
+      </div>
+   <!-- </div> -->
+
+    <!-- lubotics logo -->
+    <div class = "col-md-3">
+      <img class = "qualities-img" src = "{% static 'res/icons/blueFinal.png' %}" alt "">
+    </div> 
+
+
+    <!-- lubotics description -->
+    <div class = "col-md-9">
+      <p class = "lead"><br>LUBOTICS droidware technologies believes in </p> 
+      <h2 style="font-weight: 900">TRANSCENDING LIFE USING TECHNOLOGIES.</h2>
+      <p class = "lead">We do not just believe; we provide innovative solutions using robotics. We go beyond in creating world-changing technologies that improve the lives of every people.</p>
+    </div>
+  
+  </section></center><br>
+  <!-- end of about lubotics -->
+
+  <!-- Our team header-->
+  <center>
+  <section id="the-team" class = "our-team pt-3 pb-4">
+  <div class = "container">
+    <div class = "row mt-4">
+      <div class = "col text-center">
+        <h3 class = "display-4">Our Team</h3>
+      </div>
+    </div>
+    <hr>
+
+  <div class = "row">
+
+    <div class = "column">
+      <div class = "card">
+        <img src = "{% static 'res/images/angelo.jpg' %}" alt = "" width= "100%">
+        <div class = "container">
+          <h5 class = "text-center"><br>Angelo Erasmo</h5>
+          <p class = "title text-center">Leader; Front-end & Back-end</p>
+        </div>
+      </div>
+    </div>
+     
+    <div class = "column">
+      <div class = "card">
+        <img src = "{% static 'res/images/neal.jpg' %}" alt = "" width= "100%">
+        <div class = "container">
+          <h5 class = "text-center"><br>Neal San Andres</h5>
+          <p class = "title text-center">Front-end developer; Graphic artist</p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "column">
+      <div class = "card">
+        <img src = "{% static 'res/images/henry.png' %}" alt = "" width= "100%">
+        <div class = "container">
+          <h5 class = "text-center"><br>Jhon Henry Bayquen</h5>
+          <p class = "title text-center">Front-end developer;</p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "column">
+      <div class = "card">
+        <img src = "{% static 'res/images/ju.jpg' %}" alt = "" width= "100%">
+        <div class = "container">
+          <h5 class = "text-center"><br>Julius Nocon</h5>
+          <p class = "title text-center">Fullstack</p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "column">
+      <div class = "card">
+        <img src = "{% static 'res/images/patrick.jpg' %}" alt = "" width= "100%">
+        <div class = "container">
+          <h5 class = "text-center"><br>Patrick Castro</h5>
+          <p class = "title text-center">Fullstack</p>
+        </div>
+      </div>
+    </div>      
+  </div>
+  </div>
+  </section></center><br>
+  <!-- end of our team-->
+      
+      
+  <center><section class = "our-team pt-3 pb-4">
+  <div class = "container">
+      <div class = "row mt-4">
+        <div class = "col text-center">
+        <h3 class = "display-4">FAQS</h3>
+      </div>
+    </div>
+    <hr>
+      
+
+        <div class = "card card-faq">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="text-center">
+              <br>
+              <a class="faq-question" data-toggle="collapse" href="#faq1" aria-expanded="true" aria-controls="faq-1">
+              How many days will it take to deliver it?
+              </a>
+            </h5>
+          </div>
+          <div id="faq1" class="collapse" role="tabpanel" aria-labelledby="headingTwo" style="">
+            <div class="card-body">
+              About 3-5 days local &amp; 7-14 days for international
+            </div>
+          </div>
+        </div>
+
+
+        <div class = "card card-faq">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="text-center">
+              <br>
+              <a class="faq-question" data-toggle="collapse" href="#faq2" aria-expanded="true" aria-controls="faq-2">
+              How much would repair service cost?
+              </a>
+            </h5>
+          </div>
+          <div id="faq2" class="collapse" role="tabpanel" aria-labelledby="headingTwo" style="">
+            <div class="card-body">
+              Warranty
+
+              1 Year Manufacturing Warranty
+
+            </div>
+          </div>
+        </div>
+
+        <div class = "card card-faq">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="text-center">
+              <br>
+              <a class="faq-question" data-toggle="collapse" href="#faq3" aria-expanded="true" aria-controls="faq-3">
+              Who is the most handsome person in the world?
+              </a>
+            </h5>
+          </div>
+          <div id="faq3" class="collapse" role="tabpanel" aria-labelledby="headingTwo" style="">
+            <div class="card-body">
+              You don't know him? He's Mr. Jerome Tan Alvez!
+            </div>
+          </div>
+        </div>
+
+  
+
+
+
+
+      </div>
+  </div>
+  </div>
+      </section></center><br>
+
+{% endblock %}

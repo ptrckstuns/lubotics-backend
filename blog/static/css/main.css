@@ -5,6 +5,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
 /* HOME  */
 .home-banner{
   /* background-image: url("/res/images/banner.png"); */
@@ -70,7 +71,20 @@ nav {
   font-size: 1rem;
 }
 
+.login-button {
+  padding: 0.5rem 1rem;
+  display: block;
+  font-size: 1rem;
+}
+.login-btn-color {
+  background-color: #014F86;
+  color: #FFFFFF;
+}
 /* LOGIN */
+.login-main {
+  /* background: #F5F5F5; */
+}
+
 .login-form {
   width: 25%;
   min-width: 400px;
@@ -81,7 +95,9 @@ nav {
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.4);
   margin-bottom: 10rem;
 }
-
+.register-form {
+  transform: scale(0.9);
+}
 .login-form h1 {
   text-align: center;
   font-family: 'Bebas Neue';
@@ -115,8 +131,12 @@ nav {
 
 #nav-template {
   height: 4rem;
-}
 
+}
+nav {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+
+}
 .products {
   margin-top: 2rem;
   padding: 0 2rem;
@@ -239,7 +259,7 @@ nav {
 }
 
 /* about us css*/
-.img-fluid {
+.qualities-img {
     max-width: 100%;
     height: 100px;
 }
@@ -801,8 +821,10 @@ span img {
 }
 
 .nav-icon {
-  margin: 0 2px;
-  font-size: 28px;
+  font-size: 1.5rem;
+  /* background: red; */
+  padding: 0 2px;
+  padding-top: 5px;
   /* color: red; */
 }
 

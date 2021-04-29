@@ -1,15 +1,20 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<div class="content-section">
+
+<main class="login-main">
+	<div class="content-section login-form register-form">
 		<form method="POST">
 			{% csrf_token %}
+			<h1> <img src="{% static 'res/icons/blueFinal.png' %}"> LUBOTICS</h1>
+			<h5> droidware technologies</h5>
 			<fieldset class=form-group>
-				<legend class="border-bottom mb-4">Join Today</legend>
+				<legend class="border-bottom mb-4">Sign Up</legend>
 				{{ form|crispy }}
 			</fieldset>
 			<div class="form-group">
-				<button class="btn btn-outline-info" type="submit">Sign Up</button>				
+				<button class="btn login-btn-color" type="submit">Sign Up</button>				
 			</div>
 		</form>
 
@@ -19,4 +24,8 @@
 			</small>
 		</div>
 	</div>
+
+
+</main>
+
 {% endblock content %}

@@ -3,7 +3,8 @@
 {% load bootstrap_icons %}
 {% load bs_icons %}
 
-{% block jumbotron %}
+{% block content %}
+<!-- {% block jumbotron %} -->
 	<!-- Product containers -->
   <div class="jumbotron home-banner">
     <div class="company-logo">
@@ -13,10 +14,8 @@
       <p class="lead"> Transcending life through technology</p>
     </div>
   </div>
-{% endblock %}
+<!-- {% endblock %} -->
 	
-
-{% block content %}
 <div class="carousel-container">
   <div id="product-carousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -58,9 +57,8 @@
   <!-- <div class="text" style="text-align:center; font-size: 20px">Shop with us!<br><br></div> -->
 </div>
 
-{% endblock content %}
 
-{% block productmain %}
+<!-- {% block productmain %} -->
 <section class="productmain zens3y">
   <h1>ZEN-S3Y</h1>
   <h2>Homeschooling redefined.</h2>
@@ -89,4 +87,5 @@
       </div>
   </div>
 </div>
-{% endblock productmain %}
+<!-- {% endblock productmain %} -->
+{% endblock content %}

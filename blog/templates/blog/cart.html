@@ -1,0 +1,90 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="cart container">
+        <h2 class="cart__header">My Cart</h2>
+        <!-- <div class="input-group"> -->
+            <!-- <div class="input-group-prepend"> -->
+              <!-- <div class="input-group-text"> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div> -->
+        <div class="cart-item row">
+            <input class="col-1" type="checkbox" aria-label="">
+            <img class="col-3" src="/res/images/teach.png" alt="">
+            <div class="cart-item__details col-8">
+                <h5>7E-4CH</h5>
+                <p> 
+                  Educational robot specifically designed to address the unique learning preferences of children age 3 to 9. 
+                </p>
+
+                <div class="cart-item__footer">
+                    <p>PHP 75,000</p>
+                    <a href="/pages/product.html" class="btn btn-primary"> View Product</a>
+                    <a href="/pages/product.html" class="btn btn-danger"> Remove Product</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-item row">
+            <input class="col-1" type="checkbox" aria-label="">
+            <img class="col-3" src="/res/images/ucd.jpg" alt="">
+            <div class="cart-item__details col-8">
+                <h5>UCD</h5>
+                <p> 
+                  Mechanized UCD (Utility Carrier Dog) acts as a carrier for ammunition and explosives.
+                </p>
+
+                <div class="cart-item__footer">
+                    <p>PHP 6,200,000</p>
+                    <a href="/pages/product.html" class="btn btn-primary"> View Product</a>
+                    <a href="/pages/product.html" class="btn btn-danger"> Remove Product</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-item row">
+            <input class="col-1" type="checkbox" aria-label="">
+            <img class="col-3" src="/res/images/uag.png" alt="">
+            <div class="cart-item__details col-8">
+                <h5>UAGV-47</h5>
+                <p> 
+                  UAGV-47 (Unmanned Armed Ground Vehicle) is designed to clear buildings or areas that are hostile to reinforcements. 
+                </p>
+
+                <div class="cart-item__footer">
+                    <p>PHP 9,600,000</p>
+                    <a href="/pages/product.html" class="btn btn-primary"> View Product</a>
+                    <a href="/pages/product.html" class="btn btn-danger"> Remove Product</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+
+            <div class="cart-summary__details">
+                <div>
+                    <p class="cart-summary__category"> Subtotal Price </p>
+                    <p class="text-muted float-right "> 15 875 000 PHP </p>
+                </div>
+                <div>
+                    <p class="cart-summary__category"> Shipping Fee </p>
+                    <p class="text-muted float-right"> 10 000 PHP</p>
+                </div>
+                <hr>
+                <div>
+                    <p class="cart-summary__category"> Total Price </p>
+                    <p class="float-right cart-summary__total-price"> 15 885 000 PHP  </p>
+                </div>
+                <a href="" class="btn btn-success float-right"> Proceed to Checkout</a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="/js/script.js"></script>
+    
+{% endblock %}

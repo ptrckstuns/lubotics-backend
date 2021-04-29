@@ -1,9 +1,9 @@
 {% extends "blog/base.html" %}
 {% load static %}
-{% block products %}
+{% block content %}
 <div class="products container-fluid">
   <div class="row">
-  
+    
     <aside class="col-3">
       <div class="card">
         <h4 class="card-header">Featured Robot </h4>
@@ -23,7 +23,7 @@
           <h3>CRONE</h3> <!--This is the Product Name-->
           <!-- <p class="card-title">Title</p> -->
           <p class="card-subtitle mb-2 text-muted">A drone with a CCTV camera attached.</p>
-
+          
         </div>
         <img src="{% static 'res/images/crone.jpg' %}" alt="Card image">
         <div class="card-body">
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>       
-
+      
       <!-- populate this with somestuff -->
       <div class="row product-list">
         <div class="card col-sm">
@@ -57,7 +57,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/maid.jpeg' %}" alt="Card image cap">
           <div class="card-body">
@@ -71,7 +71,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/zensey.jpg' %}" alt="Card image cap">
           <div class="card-body">
@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>
-
+      
       
       <div class="row product-list">
         <div class="card col-sm">
@@ -102,7 +102,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/aibo.jpg' %}" alt="Card image cap">
           <div class="card-body">
@@ -116,7 +116,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/drop.png' %}" alt="Card image cap">
           <div class="card-body">
@@ -131,8 +131,8 @@
           </div>
         </div>
       </div>
-
-
+      
+      
       <div class="row product-list">
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/sea.png' %}" alt="Card image cap">
@@ -147,7 +147,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/teach.png' %}" alt="Card image cap">
           <div class="card-body">
@@ -161,7 +161,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/unirobot.png' %}" alt="Card image cap">
           <div class="card-body">
@@ -175,9 +175,9 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
       </div>
-
+      
       <div class="row product-list">
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/inet.png' %}" alt="Card image cap">
@@ -192,7 +192,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/uag.png' %}" alt="Card image cap">
           <div class="card-body">
@@ -206,7 +206,7 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
         <div class="card col-sm">
           <img class="card-img-top" src="{% static 'res/images/HSC.png' %}" alt="Card image cap">
           <div class="card-body">
@@ -220,13 +220,13 @@
             <a href="#!" class="btn cart-color">Add to Cart</a>
           </div>
         </div>
-
+        
       </div>
-
-    
-      </div>
-    </main>
-  </div>
+      
+      
+    </div>
+  </main>
+</div>
 
 </div>
-{% endblock products %}
+{% endblock content %}

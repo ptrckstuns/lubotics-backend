@@ -36,3 +36,6 @@ def wishlist(request):
 
 def signup(request):
 	return render(request, 'blog/signup.html', {'title': 'Sign Up'})	
+
+def nav(request):
+	return render(request, 'blog/nav.html', {'title': 'Nav template'})

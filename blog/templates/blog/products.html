@@ -31,6 +31,7 @@
         </div>
       </div>
     </aside>
+
     <main class="container-fluid col-sm">
       <!-- search -->
       <div class="row">
@@ -42,190 +43,33 @@
         </div>
       </div>       
       
-      <!-- populate this with somestuff -->
-      <div class="row product-list">
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/nido.jpg' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">N1-DO</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 70,000</h6>
-            <p class="card-text">
-              A human child robot for practicing parental care.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/maid.jpeg' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">MA-1D</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 150,000</h6>
-            <p class="card-text">
-              A human adult robot for general help purposes. 
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/zensey.jpg' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">ZEN-S3Y</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 200,000</h6>
-            <p class="card-text">
-              A human teacher robot for providing homeschooling. Teacher convincing look and feel.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-      </div>
+      <!-- LOOPING THE PRODUCTS HERE -->
+      {% for product in products %}
+        {% if forloop.counter0|divisibleby:3 %} <div class="row product-list"> 
+        {% endif %} 
       
-      
-      <div class="row product-list">
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/aido.jpg' %}" alt="Card image cap">
-          <div class="card-body">
+        <div class="col-md-4">
+          <div class="card">
             
-            <h4 class="card-title">Aido</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 50,000</h6>
-            <p class="card-text">
-              Social Family Robot that will be your children best friend and can do household chores
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
+            <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+            
+            <div class="card-body">
+              <h4 class="card-title">{{product.name}}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">{{product.price}}</h6>
+              <p class="card-text">
+              {{product.description}}
+              </p>
+              <a href="#!" class="btn wish-color">Add to Wishlist</a>
+              <a href="#!" class="btn cart-color">Add to Cart</a>
+            </div>
+            
           </div>
         </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/aibo.jpg' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">Aibo</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 140,518.99</h6>
-            <p class="card-text">
-              A robot dog that has a longer lifespan than common dogs. Has all the functionalities and features of a dog (except is does not pee).
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
+        {% if forloop.counter|divisibleby:3 or forloop.last %}
           </div>
-        </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/drop.png' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">DROP DRONE</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 30,000,000</h6>
-            <p class="card-text">
-              Built in pure titanium metal that transport people into a specific location. 50 person max capacity that can load up up to 5000kg.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-      </div>
-      
-      
-      <div class="row product-list">
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/sea.png' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">SEA DRONE</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 900,000</h6>
-            <p class="card-text">
-              Autonomous personal watercraft. Designed to drift from waters and patrol for a wide range of purposes.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/teach.png' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">7E-4CH</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 75,000</h6>
-            <p class="card-text">
-              Educational robot specifically designed to address the unique learning preferences of children age 3 to 9.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/unirobot.png' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">UNIrobot</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 105,000</h6>
-            <p class="card-text">
-              An educational robot designed for teaching all ages on how to play various musical instruments.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-      </div>
-      
-      <div class="row product-list">
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/inet.png' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">IN-E7</h4>
-            <h6 class="card-subtitle mb-2 text-muted">Php 55,000</h6>
-            <p class="card-text">
-              A robot designed for teaching in school laboratories
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/uag.png' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">UAGV-47</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 9.6M</h6>
-            <p class="card-text">
-              UAGV-47 (Unmanned Armed Ground Vehicle) is designed to clear buildings or areas that are hostile to reinforcements.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-        <div class="card col-sm">
-          <img class="card-img-top" src="{% static 'res/images/HSC.png' %}" alt="Card image cap">
-          <div class="card-body">
-            
-            <h4 class="card-title">HSC</h4>
-            <h6 class="card-subtitle mb-2 text-muted">PHP 4,000,000</h6>
-            <p class="card-text">
-              HSC (Humanoid Survey Corps) is an advanced humanoid and aims to set standards on rigorous testing for assisting combatants with a more durable entity.
-            </p>
-            <a href="#!" class="btn wish-color">Add to Wishlist</a>
-            <a href="#!" class="btn cart-color">Add to Cart</a>
-          </div>
-        </div>
-        
-      </div>
-      
-      
-    </div>
-  </main>
+        {%  endif %}
+      {% endfor %}
+    </main>
 </div>
 
 </div>

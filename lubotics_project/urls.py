@@ -28,4 +28,3 @@ urlpatterns = [
     # path('nav/', blog(template_name='blog/nav.html'), name='nav'), #url for nav
 
 ]
-

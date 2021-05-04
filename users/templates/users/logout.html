@@ -1,9 +1,38 @@
 {% extends "blog/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-	<h2>You have been logged out</h2>
-	<div class="border-top pt-3">
-		<small class="text-muted">
-			<a href="{% url 'login' %}">Log In Again</a>
-		</small>
+	<center>
+		<br>
+		<h2>You have been logged out</h2>
+		<!-- <div class="border-top pt-3">
+			<small class="text-muted">
+				<a href="{% url 'login' %}">Log In Again</a>
+			</small>
+		</div> -->
+	</center>
+	<main class="login-main">
+		<div class="content-section login-form">
+			<form method="POST">
+				{% csrf_token %}
+				<h1> <img src="{% static 'res/icons/blueFinal.png' %}"> LUBOTICS</h1>
+				<h5> droidware technologies</h5>
+				<fieldset class=form-group>
+					<legend class="border-bottom mb-4">Log In</legend>
+					{{ form|crispy }}
+				</fieldset>
+				<div class="form-group">
+					<button class="btn login-btn-color" type="submit">Login</button>				
+				</div>
+	
+			</form>
+			<div class="border-top pt-3">
+				<small class="text-muted">
+					Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+				</small>
+			</div>
+	
+		</div>
 	</div>
+</main>
 {% endblock content %}

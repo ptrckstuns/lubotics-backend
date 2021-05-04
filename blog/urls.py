@@ -10,7 +10,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('product/', views.product, name='product'),
     path('products/', views.products, name='products'),
-    path('profile/', views.profile, name='profile'),
+    # path('profile/', views.profile, name='profile'),
     path('cart/', views.cart, name='cart'),
     path('nav/', views.cart, name='nav'),
     # path('changelog/', views.chlog, name='chlog'),
@@ -19,13 +19,11 @@ urlpatterns = [
     path('testproduct2/', views.TestProductView.as_view(), name='testproduct2'),
 
     # path('wishlist/', views.wishlist, name='blog-wishlist'),
-    path('signup/', views.signup, name='blog-signup'),
+    # path('signup/', views.signup, name='blog-signup'),
     # path('testmedia/', views.media, name='media'),
     # path('login/', views.login, name='blog-login'),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+
                           
 # testproduct/category/1
 # URLS 

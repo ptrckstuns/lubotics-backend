@@ -127,14 +127,18 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'blog-home'
+#After login, go to this page
+LOGIN_REDIRECT_URL = 'lubotics:home'
+LOGIN_URL = 'login'
+
 
 BS_ICONS_BASE_URL = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/'
 
 MD_ICONS_BASE_URL = 'https://cdn.jsdelivr.net/npm/@mdi/svg@5.9.55/'
 
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Base url to serve media files
 MEDIA_URL = '/media/'
 
-# Path where media is stored
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

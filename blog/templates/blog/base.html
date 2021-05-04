@@ -44,8 +44,16 @@
 	<!-- <main role="main" class="container">
 
 	</main> -->
-	{% block content %}
-	{% endblock content %}
+	<div class="alert_middle">
+		{% if messages %}
+			{% for message in messages %}
+			<div class="alert alert-{{ message.tags }}">
+				{{ message }}
+			</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+	{% block content %}{% endblock content %}
 	<!-- <div id="nav-footer"></div>
 		<script src="/js/script.js"></script> -->
 	{% include "blog/footer.html" %}

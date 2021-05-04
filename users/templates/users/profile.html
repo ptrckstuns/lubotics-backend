@@ -1,16 +1,17 @@
 {% extends "blog/base.html" %}
 {% load static %}
-    
+{% load crispy_forms_tags %}
 {% block content %}
+    <h2>{{ user.username }}</h2>
     <!-- main -->
     <div class="container-fluid profile">
         <div class="row">
             <div class="col-2 card profile__card">
                 <!-- <h3> My Account </h3> -->
                 <h5 class="card-header"> My Account </h5>
-                <img class="profile__avatar w-75" src="{% static 'res/images/yuna-circle.png' %}" alt="">
+                <img class="profile__avatar w-75" src="{{ user.profile.image.url }}" alt="">
                 <!-- <div class="card-title name"> Shin Yuna</div> -->
-                <h5 class="mb-3 profile__name"> Shin Yuna (신유나)</h5>
+                <h5 class="mb-3 profile__name">{{ user.first_name}} {{ user.last_name }}</h5>
                 <h6 class="card-subtitle mb-2"> <span class="text-muted"> Joined  </span> Feb 12, 2019</h6>
             </div>
 
@@ -22,17 +23,17 @@
                     <div class="row">
                         <div class="col-sm">
                             <p class=""> Full Name  </p>
-                            <h5 class=""> Shin Yuna ( 신유나) </h5>
+                            <h5 class="">{{ user.first_name}} {{ user.last_name }}</h5>
                         </div>
                         <div class="col-sm">
                             <p class="card-text align-right"> Email </p>
-                            <h5 class="card-title align-right"> shinyuna@jyp.com</h5>
+                            <h5 class="card-title align-right">{{ user.email }}</h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm">
                             <p class="card-text">Birthday  </p>
-                            <h5 class="card-title"> December 9, 2003 </h5>
+                            <h5 class="card-title"></h5>
                         </div>
                         <div class="col-sm">
                             <p class="card-text align-right" >Joined in  </p>
@@ -60,7 +61,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm">
-                            <p class="">Address #1  </p>
+                            <p class="">Address #1 </p>
                             <h5 class=""> 216, Itzy St. Barangay Dingdong, Suwon, Paldallo </h5>
                         </div>
                         <div class="col-sm">
@@ -115,13 +116,20 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1> <img src="{% static 'res/icons/blueFinal.png' %}"> LUBOTICS</h1>
+        <h5> droidware technologies</h5>
+        <fieldset class=form-group>
+            <legend class="border-bottom mb-4">Profile Info</legend>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn login-btn-color" type="submit">Update</button>				
+        </div>
+    </form>
+
     <script src="/js/script.js"></script>
-
-    
-
 {% endblock %}

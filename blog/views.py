@@ -30,8 +30,8 @@ def chlog(request):
 def cart(request):
 	return render(request, 'blog/cart.html', {'title': 'My Cart'})	
 
-def profile(request):
-	return render(request, 'blog/profile.html', {'title': 'Profile'})	
+# def profile(request):
+# 	return render(request, 'blog/profile.html', {'title': 'Profile'})	
 
 def wishlist(request):
 	return render(request, 'blog/wishlist.html', {'title': 'My Wishlist'})	

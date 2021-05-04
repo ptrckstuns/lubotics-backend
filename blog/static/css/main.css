@@ -76,10 +76,12 @@ nav {
   display: block;
   font-size: 1rem;
 }
+
 .login-btn-color {
   background-color: #014F86;
   color: #FFFFFF;
 }
+
 /* LOGIN */
 /* .login-main { */
   /* background: #F5F5F5; */
@@ -122,11 +124,13 @@ nav {
 .login-form .sign-up-link {
   padding: 1rem 0;
 }
-
 .login-form button[type="submit"] {
   margin-top: 2rem;
   text-align: center;
   width: 100%;
+}
+.alert_middle {
+  text-align: center;
 }
 
 #nav-template {
@@ -835,9 +839,6 @@ span img {
   margin-left: 23rem;
 }
 
-/* .products .test{
-  max-width: 30%;
-} */
 
 .wider {
   max-width: 30%;

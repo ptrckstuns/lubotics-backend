@@ -3,9 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
+def logout_view(request):
+	logout(request)
+	messages.success(request, f'Successfully logged out!')
+	return redirect('login')
 
-
+    # Redirect to a success page.
 # Create your views here.
 def register(request):
 	if request.method == 'POST':
@@ -22,8 +27,18 @@ def register(request):
 
 	return render(request, 'users/register.html', {'form': form})
 
+# def logout(request):
+# 	form = UserRegisterForm()	
+# 	return render(request, 'users/logout.html', {'form': form})
+
 @login_required
 def profile(request):
+	
+	# return render(request, 'users/profile.html',  {'title': 'Profile'})
+	return render(request, 'users/profile.html')
+
+
+def editprofile(request):
 	if request.method == 'POST':
 		u_form = UserUpdateForm(request.POST, instance=request.user)
 		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -40,5 +55,6 @@ def profile(request):
 		'u_form': u_form,
 		'p_form': p_form,
 	}
-	# return render(request, 'users/profile.html',  {'title': 'Profile'})
-	return render(request, 'users/profile.html', context)
+
+	
+	return render(request, 'users/edit_profile.html', context)

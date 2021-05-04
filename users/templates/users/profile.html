@@ -2,25 +2,29 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h2>{{ user.username }}</h2>
+    <!-- <h2>{{ user.username }}</h2> -->
     <!-- main -->
     <div class="container-fluid profile">
         <div class="row">
             <div class="col-2 card profile__card">
                 <!-- <h3> My Account </h3> -->
                 <h5 class="card-header"> My Account </h5>
-                <img class="profile__avatar w-75" src="{{ user.profile.image.url }}" alt="">
+                <img class="profile__avatar rounded-circle w-75" src="{{ user.profile.image.url }}" alt="">
                 <!-- <div class="card-title name"> Shin Yuna</div> -->
-                <h5 class="mb-3 profile__name">{{ user.first_name}} {{ user.last_name }}</h5>
-                <h6 class="card-subtitle mb-2"> <span class="text-muted"> Joined  </span> Feb 12, 2019</h6>
+                <h5 class="mb-3 profile__name">{{ user.get_full_name }}</h5>
+                <h6 class="card-subtitle mb-2"> <span class="text-muted"> Joined  </span> {{ user.date_joined|date }}</h6>
             </div>
 
             <div class="card col-sm profile__details">
-                <h5 class="card-header">Personal Details <span class="float-right"> Edit</span></h5>
+                <h5 class="card-header">Personal Details <a href="{% url 'edit-profile' %}" class="float-right"> Edit </a> </h5>
 
                 <div class="card-body">
                     
                     <div class="row">
+                        <div class="col-sm">
+                            <p class=""> Username  </p>
+                            <h5 class="">{{ user.username }}</h5>
+                        </div>
                         <div class="col-sm">
                             <p class=""> Full Name  </p>
                             <h5 class="">{{ user.first_name}} {{ user.last_name }}</h5>
@@ -32,12 +36,12 @@
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <p class="card-text">Birthday  </p>
-                            <h5 class="card-title"></h5>
+                            <p class="card-text">Birthday</p>
+                            <h5 class="card-title">{{ user.profile.birth_date }}</h5>
                         </div>
                         <div class="col-sm">
                             <p class="card-text align-right" >Joined in  </p>
-                            <h5 class="card-title align-right"> February 12, 2019</h5>
+                            <h5 class="card-title align-right"> {{ user.date_joined }}</h5>
                         </div>
                     </div>
                   <!-- <a href="#!" class="btn btn-primary">Go somewhere</a> -->
@@ -50,33 +54,23 @@
 
         <div class="row">
             <div class="col-2 card profile__links">
-                <a href="#" class="btn btn-success"> Profile</a>
+                <a href="#" class="btn btn-success">Profile</a>
                 <a href="#" class="btn btn-primary disabled"> My Wallet</a>
                 <a href="#" class="btn btn-primary disabled"> Membership</a>
                 <a href="#" class="btn btn-primary disabled"> Orders & Tracking</a>
                 <a href="#wishlist" class="btn btn-primary "> Wishlist</a>
             </div>
             <div class="card col-sm profile__details" style="margin-top: 1.5rem;">
-                <h5 class="card-header"> Shipping Address <span class="float-right"> Edit </span></h5>
+                <h5 class="card-header"> Shipping Address <a href="{% url 'edit-profile' %}" class="float-right"> Edit </a></h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm">
-                            <p class="">Address #1 </p>
-                            <h5 class=""> 216, Itzy St. Barangay Dingdong, Suwon, Paldallo </h5>
+                            <p class="">Address </p>
+                            <h5 class=""> {{ user.profile.address }} </h5>
                         </div>
                         <div class="col-sm">
                             <p class="align-right" >Contact no. </p>
-                            <h5 class="align-right" > 02015921 </h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <p class="">Address #2  </p>
-                            <h5 class=""> 217, Itzy St. Barangay Dongdings, Suwon, Paldallo </h5>
-                        </div>
-                        <div class="col-sm">
-                            <p class="align-right" >Contact no. </p>
-                            <h5 class="align-right" > 0211-5921-212</h5>
+                            <h5 class="align-right" > {{ user.profile.contact_number }} </h5>
                         </div>
                     </div>
                 </div>
@@ -117,19 +111,7 @@
             </div>
         </div>
     </div>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h1> <img src="{% static 'res/icons/blueFinal.png' %}"> LUBOTICS</h1>
-        <h5> droidware technologies</h5>
-        <fieldset class=form-group>
-            <legend class="border-bottom mb-4">Profile Info</legend>
-            {{ u_form|crispy }}
-            {{ p_form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn login-btn-color" type="submit">Update</button>				
-        </div>
-    </form>
+
 
     <script src="/js/script.js"></script>
 {% endblock %}

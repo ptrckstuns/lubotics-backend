@@ -111,7 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 
@@ -130,7 +131,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #After login, go to this page
 LOGIN_REDIRECT_URL = 'lubotics:home'
 LOGIN_URL = 'login'
-
+LOGOUT_REDIRECT_URL = 'login'
 
 BS_ICONS_BASE_URL = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/'
 

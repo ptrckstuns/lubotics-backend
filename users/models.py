@@ -12,14 +12,12 @@ class Profile(models.Model):
 	# image = models.ImageField(upload_to=profile_path)
 	image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
-	first_name = models.CharField(max_length=100)
-	last_name = models.CharField(max_length=100)
+	# birth_date = models.DateField(blank=True)
+	birth_date =models.DateField(auto_now=False, null=True, blank=True)
+	# date_joined = models.DateTimeField(default=timezone.now)
 	
-	# birth_date = models.DateField()
-	date_joined = models.DateTimeField(default=timezone.now)
-	
-	address = models.CharField(max_length=250)
-	# contact_number = PhoneNumberField()
+	address = models.CharField(max_length=250, blank=True)
+	contact_number = PhoneNumberField(blank=True)
 	
 	# wishlist = models.ManyToManyField(Product, blank = True, related_name='Profile.wishlist')
 	# cart = models.ManyToManyField(Product, blank = True, related_name='Profile.cart')
@@ -36,8 +34,9 @@ class Profile(models.Model):
 	def __str__(self):
 		return f'{self.user.username} Profile'
 
-	def save(self):
-		super().save()
+	def save(self, *args, **kwargs):
+		super(Profile, self).save(*args, **kwargs)
+
 		img = Image.open(self.image.path)
 		if img.height > 300 or img.width > 300:
 			output_size = (300, 300)

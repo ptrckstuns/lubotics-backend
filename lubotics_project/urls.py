@@ -26,12 +26,15 @@ urlpatterns = [
     path('', include('blog.urls')), # use this when default page
     path('register/', user_views.register, name='register'), #url for register
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'), #url for login
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'), #url for logout
+    # path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'), #url for logout
+    path('logout/', user_views.logout_view, name='logout'), #url for logout
+    # path('logout/', user_views.logout, name='logout'), #url for logout
     path('profile/', user_views.profile, name='profile'), #url for profile
+
+    path('profile/edit', user_views.editprofile, name='edit-profile'), #url for profile
     # path('nav/', blog(template_name='blog/nav.html'), name='nav'), #url for nav
 
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

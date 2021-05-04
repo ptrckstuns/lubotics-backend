@@ -4,14 +4,17 @@
 {% block content %}
 	<center>
 		<br>
-		<h2>You have been logged out</h2>
+		<div class="alert alert-info">
+			You have been logged out
+		</div>
 		<!-- <div class="border-top pt-3">
 			<small class="text-muted">
 				<a href="{% url 'login' %}">Log In Again</a>
 			</small>
 		</div> -->
 	</center>
-	<main class="login-main">
+	<a href="{% url 'login' %}"> Login </a>
+	<!-- <main class="login-main">
 		<div class="content-section login-form">
 			<form method="POST">
 				{% csrf_token %}
@@ -34,5 +37,5 @@
 	
 		</div>
 	</div>
-</main>
+</main> -->
 {% endblock content %}

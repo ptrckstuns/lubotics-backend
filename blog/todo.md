@@ -1,14 +1,13 @@
 # DATABASE
-- [ ] User model DB
-- [ ] Products model DB
+- [x] User model DB
+- [x] Products model DB
 - [ ] Orders model DB
-
 
 # FORMS
 - [ ] cart form
-- [ ] edit profile form
+- [x] edit profile form
 - [ ] mode of payment form
-- [ ] address form
+- [x] address form
 - [x] login form
 - [x] registration
 
@@ -19,21 +18,27 @@
 - [ ] Delete from wishlist
 - [ ] Delete from cart
 - [ ] Cart checkout - mawawala sa cart added to purchases
-- [ ] Forgot password
 - [ ] Search bar 
 - [ ] Filter categories
 - [ ] Learn more (Home)
+- [x] Logout redirect to login 
 
 # ETCETERA
 - [ ] Featured product
 - [ ] Best sellers 
 - [ ] Purchases
-
-# PAT PA ACCESS
-- [x] PAACCESS NG ADMIN
-- [ ] PAACCESS NG CMD MO 
+- [x] Logout alert
 
 
+# Frontend area
+- [ ] edit profile 
+- [ ] Sign up alert redesign
+- [ ] navbar fix
+- [ ] one cart 
+- [ ] profile page alisin yung shipping card
+- [ ] remove item wishlist button
+# optional
+- [ ] Forgot password
 ---
 
 ## orders
@@ -41,3 +46,6 @@
 - user_id
 - [ products list]
 - date ordered
+
+
+<!-- x89.7w_i2JqPkVM -->

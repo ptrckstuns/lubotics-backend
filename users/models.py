@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from blog.models import Product
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 from PIL import Image
@@ -19,7 +20,7 @@ class Profile(models.Model):
 	address = models.CharField(max_length=250, blank=True)
 	contact_number = PhoneNumberField(blank=True)
 	
-	# wishlist = models.ManyToManyField(Product, blank = True, related_name='Profile.wishlist')
+	wishlist = models.ManyToManyField(Product, related_name="user_wishlist", blank = True, null = True)
 	# cart = models.ManyToManyField(Product, blank = True, related_name='Profile.cart')
 	# purchases = models.ManyToManyField(Product, blank = True, related_name='Profile.purchases')
 	

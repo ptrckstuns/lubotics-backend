@@ -54,7 +54,7 @@
             <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
             
             <div class="card-body">
-              <h4 class="card-title">{{product.name}}</h4>
+              <a href="{{ product.get_absolute_url }}" class="card-title"> {{ product.name }}</a>
               <h6 class="card-subtitle mb-2 text-muted">{{product.price}}</h6>
               <p class="card-text">
               {{product.description}}

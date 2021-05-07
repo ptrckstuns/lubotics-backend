@@ -10,7 +10,27 @@
             <!-- </div> -->
         <!-- </div> -->
     <!-- </div> -->
-        <div class="cart-item row">
+
+
+        {% for order_product in object.products.all %}
+            <div class="cart-item row">
+                <input class="col-1" type="checkbox" aria-label="">
+                <img class="col-3" src="{{ order_product.product.image.url }}" alt="">
+                <div class="cart-item__details col-8">
+                    <h5>{{ order_product.product.name }}</h5>
+                    <p> 
+                    {{product.description }}
+                    </p>
+                    <!-- {{ order_product.quantity}} -->
+                    <div class="cart-item__footer">
+                        <p>PHP 6,200,000</p>
+                        <a href="{{ order_product.product.get_absolute_url }}" class="btn btn-primary"> View Product</a>
+                        <a href="/pages/product.html" class="btn btn-danger"> Remove Product</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <!-- <div class="cart-item row">
             <input class="col-1" type="checkbox" aria-label="">
             <img class="col-3" src="/res/images/teach.png" alt="">
             <div class="cart-item__details col-8">
@@ -59,7 +79,7 @@
                     <a href="/pages/product.html" class="btn btn-danger"> Remove Product</a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="cart-summary">
             <h2>Order Summary</h2>

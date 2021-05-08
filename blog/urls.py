@@ -14,6 +14,7 @@ urlpatterns = [
     # path('cart/', views.cart, name='cart'),
     path('cart/', views.CartDetail.as_view(), name='cart'),
     path('cart/add/<slug>', views.add_to_cart, name='add-to-cart'),
+    path('cart/remove/<slug>', views.remove_from_cart, name='remove-from-cart'),
     path('nav/', views.cart, name='nav'),
     # path('changelog/', views.chlog, name='chlog'),
     path('testproduct/', views.testproduct, name='testproduct'),

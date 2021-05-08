@@ -60,7 +60,7 @@
               {{product.description}}
               </p>
               <a href="#!" class="btn wish-color">Add to Wishlist</a>
-              <a href="#!" class="btn cart-color">Add to Cart</a>
+              <a href="{{ product.get_add_to_cart_url }}" class="btn cart-color">Add to Cart</a>
             </div>
             
           </div>

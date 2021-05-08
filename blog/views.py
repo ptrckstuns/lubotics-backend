@@ -70,7 +70,7 @@ class CartDetail(LoginRequiredMixin, View):
 		try:
 			order = Order.objects.get(user=self.request.user, ordered=False)
 		except Exception:
-			messages.error(request, "You do not have an order")
+			messages.warning(self.request, "You do not have an order")
 			return redirect("/")
 		else:
 			context = {
@@ -86,7 +86,7 @@ class ProductDetailView(DetailView):
 @login_required
 def add_to_cart(request, slug):
 	product = get_object_or_404(Product, slug=slug)
-	order_product, created = OrderProduct.objects.get_or_create(product=product)
+	order_product, created = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)
 	order_qs = Order.objects.filter(user=request.user, ordered=False)
 
 	if order_qs.exists():
@@ -102,3 +102,25 @@ def add_to_cart(request, slug):
 		order.products.add(order_product)
 	messages.success(request, f'Added item to cart')
 	return redirect("lubotics:product", slug=slug)
+
+
+@login_required
+def remove_from_cart(request, slug):
+	product = get_object_or_404(Product, slug=slug)
+	order_qs = Order.objects.filter(user=request.user, ordered=False)
+
+	if order_qs.exists():
+		order = order_qs[0]
+		if order.products.filter(product__slug=product.slug).exists():
+			order_product = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)[0]
+			order.products.remove(order_product)
+		else:
+			messages.warning(request, f'Order does not contain this item')
+			return redirect("lubotics:product", slug=slug)
+
+	else:
+		messages.warning(request, f'User does not have an order')
+		return redirect("lubotics:product", slug=slug)
+
+	messages.warning(request, f'Removed item from cart')
+	return redirect("lubotics:cart")

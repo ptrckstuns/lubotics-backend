@@ -1,9 +1,16 @@
 from django.shortcuts import render
-from .models import Post, Product
+# from django.core.exeptions import ObjectDoesNotExist
+from .models import Post, Product, OrderProduct, Order
 # from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views import generic
+from django.views.generic import DetailView, View
+from django.contrib import messages
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 
 def home(request):
@@ -57,3 +64,63 @@ class TestProductView(generic.ListView):
         return Product.objects.all()
 		# """Return the last five published questions."""
         # return Question.objects.order_by('-pub_date')[:5]
+
+class CartDetail(LoginRequiredMixin, View):
+	def get(self, *args, **kwargs):
+		try:
+			order = Order.objects.get(user=self.request.user, ordered=False)
+		except Exception:
+			messages.warning(self.request, "You do not have an order")
+			return redirect("/")
+		else:
+			context = {
+				'object': order
+			}
+			return render(self.request, 'blog/cart.html', context)
+
+class ProductDetailView(DetailView):
+	model = Product
+	template_name = 'blog/product.html'
+
+
+@login_required
+def add_to_cart(request, slug):
+	product = get_object_or_404(Product, slug=slug)
+	order_product, created = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)
+	order_qs = Order.objects.filter(user=request.user, ordered=False)
+
+	if order_qs.exists():
+		order = order_qs[0]
+		if order.products.filter(product__slug=product.slug).exists():
+			order_product.quantity += 1
+			order_product.save()
+		else:
+			order.products.add(order_product)
+	else:
+		ordered_date = timezone.now()
+		order = Order.objects.create(user = request.user, ordered_date=ordered_date)
+		order.products.add(order_product)
+	messages.success(request, f'Added item to cart')
+	return redirect("lubotics:product", slug=slug)
+
+
+@login_required
+def remove_from_cart(request, slug):
+	product = get_object_or_404(Product, slug=slug)
+	order_qs = Order.objects.filter(user=request.user, ordered=False)
+
+	if order_qs.exists():
+		order = order_qs[0]
+		if order.products.filter(product__slug=product.slug).exists():
+			order_product = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)[0]
+			order.products.remove(order_product)
+		else:
+			messages.warning(request, f'Order does not contain this item')
+			return redirect("lubotics:product", slug=slug)
+
+	else:
+		messages.warning(request, f'User does not have an order')
+		return redirect("lubotics:product", slug=slug)
+
+	messages.warning(request, f'Removed item from cart')
+	return redirect("lubotics:cart")

@@ -4,6 +4,11 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from blog.models import Wishlist
+from django.views.generic import DetailView, View
+from django.urls import reverse
+
 
 def logout_view(request):
 	logout(request)
@@ -31,11 +36,20 @@ def register(request):
 # 	form = UserRegisterForm()	
 # 	return render(request, 'users/logout.html', {'form': form})
 
-@login_required
-def profile(request):
-	
+# @login_required
+class ProfileView(LoginRequiredMixin, View):
+	def get(self, *args, **kwargs): # get wishlist
+		try:
+			wishlist = Wishlist.objects.get(user=self.request.user)
+		except Exception:
+			# messages.warning(self.request, "You do not have any wishes")
+			wishlist = []
+			# return redirect("/")
+		context = {
+			'object': wishlist
+		}
 	# return render(request, 'users/profile.html',  {'title': 'Profile'})
-	return render(request, 'users/profile.html')
+		return render(self.request, 'users/profile.html', context)
 
 
 def editprofile(request):

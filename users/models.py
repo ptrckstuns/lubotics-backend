@@ -20,7 +20,7 @@ class Profile(models.Model):
 	address = models.CharField(max_length=250, blank=True)
 	contact_number = PhoneNumberField(blank=True)
 	
-	wishlist = models.ManyToManyField(Product, related_name="user_wishlist", blank = True, null = True)
+	# wishlist = models.ManyToManyField(Product, related_name="user_wishlist", blank = True, null = True)
 	# cart = models.ManyToManyField(Product, blank = True, related_name='Profile.cart')
 	# purchases = models.ManyToManyField(Product, blank = True, related_name='Profile.purchases')
 	

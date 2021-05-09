@@ -79,7 +79,14 @@ class Product(models.Model):
 		return reverse("lubotics:remove-from-cart", kwargs={
 			'slug': self.slug
 		})
-
+	def get_add_to_wishlist_url(self):
+		return reverse("lubotics:add-to-wishlist", kwargs={
+			'slug': self.slug
+		})
+	def get_remove_from_wishlist_url(self):
+		return reverse("lubotics:remove-from-wishlist", kwargs={
+			'slug': self.slug
+		})
 class OrderProduct(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -95,6 +102,13 @@ class Order(models.Model):
 	start_date = models.DateTimeField(auto_now_add=True)
 	ordered_date = models.DateTimeField()
 	ordered = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.user.username
+
+class Wishlist(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+	products = models.ManyToManyField(Product)
 
 	def __str__(self):
 		return self.user.username

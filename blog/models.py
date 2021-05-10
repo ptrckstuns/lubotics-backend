@@ -18,7 +18,7 @@ class Post(models.Model):
 		return self.title
 
 
-	
+
 def product_path(instance, filename):
     return f'products/{instance.category}/{instance.name}/{filename}'
 
@@ -35,12 +35,15 @@ CATEGORY_CHOICES = (
 	('Education', 'Education'),
 	('Military', 'Military & Security'),
 )
+CATEGORY_SLUGS = {k.lower(): v for k, v in CATEGORY_CHOICES}
+
 class Product(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.TextField()
 	features = models.TextField()
 	price = models.DecimalField(max_digits=8, decimal_places=2) 
-	category = models.CharField(choices=CATEGORY_CHOICES, max_length=100)
+	category = models.CharField(choices=CATEGORY_CHOICES, max_length=25)
+	category_slug = models.CharField(default='', editable= False, max_length=25)
 	image = models.ImageField(upload_to=product_path)
 	slug = models.SlugField(
 		default='',
@@ -51,6 +54,13 @@ class Product(models.Model):
 
 	def __str__(self): 
 		return self.name
+
+	def _get_category_slug(self):
+		slugs = CATEGORY_SLUGS
+		for slug in slugs:
+			if slugs[slug] == self.category:
+				return slug
+
 	def _generate_slug(self):
 		# max_length = self._meta.get_field('slug').max_length
 		# slug_candidate = slug_original = slugify(self.title)[:max_length]
@@ -64,7 +74,15 @@ class Product(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.pk:
 			self.slug = self._generate_slug()
+			self.category_slug = self._get_category_slug()
 		super(Product, self).save(*args, **kwargs)
+
+
+	
+	def get_category_url(self):
+		return reverse("lubotics:products-category", kwargs={
+			'category': self.category
+		})
 
 	def get_absolute_url(self):
 		return reverse("lubotics:product", kwargs={

@@ -64,6 +64,12 @@ class TestProductView(generic.ListView):
         return Product.objects.all()
 		# """Return the last five published questions."""
         # return Question.objects.order_by('-pub_date')[:5]
+class ProductCategoryView(generic.ListView):
+	template_name = 'blog/products.html'
+	context_object_name = 'products'
+
+	def get_queryset(self):
+		return Product.objects.filter(category_slug=self.kwargs['category'])
 
 class CartDetail(LoginRequiredMixin, View):
 	def get(self, *args, **kwargs):

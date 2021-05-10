@@ -10,6 +10,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('product/', views.product, name='product'),
     path('products/', views.products, name='products'),
+    path('products/<str:category>', views.ProductCategoryView.as_view(), name='products-category'),
     # path('profile/', views.profile, name='profile'),
     # path('cart/', views.cart, name='cart'),
     path('cart/', views.CartDetail.as_view(), name='cart'),

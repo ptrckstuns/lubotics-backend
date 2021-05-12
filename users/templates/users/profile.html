@@ -79,36 +79,23 @@
         
         <div id="wishlist" class="card wishlist">
             <h4 class="card-header"> Wishlist</h4>
-            <div class="row">
+
+            {% for product in object.products.all %}
+              {% if forloop.counter0|divisibleby:4 %} 
+                <div class="row"> 
+              {% endif %} 
                 <div class="col-sm card">
-                    <img class="card-img-top" src="{% static '/res/images/aibo.jpg' %}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
                     <div class="card-body"> 
-                        <div class="card-title">Aibo</div>
-                        <div class="card-text">PHP 140,518.99</div>
-                    </div>
-                </div>    
-                <div class="col-sm card">
-                    <img class="card-img-top" src="{% static '/res/images/HSC.png' %}" alt="Card image cap">
-                    <div class="card-body"> 
-                        <div class="card-title">HSC</div>
-                        <div class="card-text">PHP 4,000,000</div>
-                    </div>
+                        <div class="card-title">{{ product.name }}</div>
+                        <div class="card-text">PHP {{ product.price }}</div>
+                      </div>
+                      <a href="{{ product.get_remove_from_wishlist_url }}" class="btn btn-danger"> Remove Product</a>
                 </div>
-                <div class="col-sm card">
-                    <img class="card-img-top" src="{% static '/res/images/aido.jpg' %}" alt="Card image cap">
-                    <div class="card-body"> 
-                        <div class="card-title">Aido</div>
-                        <div class="card-text">PHP 50,000</div>
-                    </div>
-                </div>    
-                <div class="col-sm card">
-                    <img class="card-img-top" src="{% static '/res/images/crone.jpg' %}" alt="Card image cap">
-                    <div class="card-body"> 
-                        <div class="card-title">CRONE</div>
-                        <div class="card-text">PHP 750,000</div>
-                    </div>
+              {% if forloop.counter|divisibleby:4 or forloop.last %}
                 </div>
-            </div>
+              {%  endif %}
+            {% endfor %}
         </div>
     </div>
 

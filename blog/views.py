@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # from django.core.exeptions import ObjectDoesNotExist
-from .models import Post, Product, OrderProduct, Order
+from .models import Post, Product, OrderProduct, Order, Wishlist
 # from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
@@ -64,14 +64,33 @@ class TestProductView(generic.ListView):
         return Product.objects.all()
 		# """Return the last five published questions."""
         # return Question.objects.order_by('-pub_date')[:5]
+class ProductCategoryView(generic.ListView):
+	template_name = 'blog/products.html'
+	context_object_name = 'products'
+
+	def get_queryset(self):
+		return Product.objects.filter(category_slug=self.kwargs['category'])
+
+def search_products(request):
+	if request.method == "POST":
+		searched = request.POST['searched']
+		products = Product.objects.filter(name__contains=searched)
+
+		if not products.exists():
+			products = []
+
+		return render(request, 'blog/products.html', {'products': products, 'searched': searched})
+	else:
+		return redirect("lubotics:products")
 
 class CartDetail(LoginRequiredMixin, View):
 	def get(self, *args, **kwargs):
 		try:
 			order = Order.objects.get(user=self.request.user, ordered=False)
 		except Exception:
-			messages.warning(self.request, "You do not have an order")
-			return redirect("/")
+			messages.warning(self.request, "You do not have any orders")
+			order = []
+			# return redirect("/")
 		else:
 			context = {
 				'object': order
@@ -103,7 +122,26 @@ def add_to_cart(request, slug):
 	messages.success(request, f'Added item to cart')
 	return redirect("lubotics:product", slug=slug)
 
+@login_required
+def add_to_wishlist(request, slug):
+	product = get_object_or_404(Product, slug=slug)
+	wishlist_qs = Wishlist.objects.filter(user=request.user)
 
+	if wishlist_qs.exists(): # wishlist for user exist in the db
+		wishlist = wishlist_qs[0] 
+		if wishlist.products.filter(slug=product.slug).exists(): # product exists already
+			messages.warning(request, f'Product already in wishlist')
+		else: # product is not in wishlist
+			wishlist.products.add(product)
+			messages.success(request, f'Added product to wishlist')
+
+	else: # user does not have a wishlist in the db
+		wishlist = Wishlist.objects.create(user = request.user)
+		wishlist.products.add(product)
+		messages.success(request, f'Added product to wishlist')
+
+	return redirect("lubotics:product", slug=slug)
+	
 @login_required
 def remove_from_cart(request, slug):
 	product = get_object_or_404(Product, slug=slug)
@@ -124,3 +162,43 @@ def remove_from_cart(request, slug):
 
 	messages.warning(request, f'Removed item from cart')
 	return redirect("lubotics:cart")
+
+@login_required
+def remove_from_wishlist(request, slug):
+	product = get_object_or_404(Product, slug=slug)
+	wishlist_qs = Wishlist.objects.filter(user=request.user)
+
+	if wishlist_qs.exists():
+		wishlist = wishlist_qs[0]
+		if wishlist.products.filter(slug=product.slug).exists():
+			wishlist.products.remove(product)
+			messages.warning(request, f'Removed item from wishlist')
+		else:
+			messages.warning(request, f'Wishlist does not contain this item')
+			return redirect("profile")
+	else:
+		messages.warning(request, f'User does not have a wishlist')
+		return redirect("profile")
+
+	return redirect("profile")
+
+
+# @login_required
+# def add_to_wishlist(request, slug):
+# 	product = get_object_or_404(Product, slug=slug)
+# 	# order_product, created = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)
+# 	wishlist_qs = Wishlist.objects.filter(user=request.user)
+
+# 	if order_qs.exists():
+# 		order = order_qs[0]
+# 		if order.products.filter(product__slug=product.slug).exists():
+# 			order_product.quantity += 1
+# 			order_product.save()
+# 		else:
+# 			order.products.add(order_product)
+# 	else:
+# 		ordered_date = timezone.now()
+# 		order = Order.objects.create(user = request.user, ordered_date=ordered_date)
+# 		order.products.add(order_product)
+# 	messages.success(request, f'Added item to cart')
+# 	return redirect("lubotics:product", slug=slug)

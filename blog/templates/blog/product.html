@@ -34,7 +34,7 @@
       <div class="card-body">
           <p class="product__price card-text float-left">{{ object.price}}</p>
           <div class="actions float-right">
-              <a href="#!" class="btn wish-color">Add to Wishlist</a>
+              <a href="{{ object.get_add_to_wishlist_url }}" class="btn wish-color">Add to Wishlist</a>
               <a href="{{ object.get_add_to_cart_url }}" class="btn cart-color">Add to Cart</a>
           </div>
       </div>

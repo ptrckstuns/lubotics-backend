@@ -34,15 +34,31 @@
 
     <main class="container-fluid col-sm">
       <!-- search -->
+      <form action="{%url 'lubotics:products-search' %}" method=POST>
       <div class="row">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search Product" aria-label="" aria-describedby="basic-addon1">
-          <div class="input-group-append">
-            <button class="btn btn-success" type="button"> Search </button>
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Product" aria-label="" 
+                    aria-describedby="basic-addon1" name="searched" 
+                    {% if searched %}
+                    value="{{searched}}"
+                    {% endif %}
+            >
+            <div class="input-group-append">
+              <button class="btn btn-success" type="submit"> Search </button>
+            </div>
           </div>
-        </div>
-      </div>       
+        </div>       
+      </form>
       
+      {% if searched %}
+      <div>
+
+        <h3> Searched for {{ searched }}</h3>
+        <br>
+        
+      </div>
+      {% endif %}
       <!-- LOOPING THE PRODUCTS HERE -->
       {% for product in products %}
         {% if forloop.counter0|divisibleby:3 %} <div class="row product-list"> 

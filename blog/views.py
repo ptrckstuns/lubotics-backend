@@ -71,6 +71,18 @@ class ProductCategoryView(generic.ListView):
 	def get_queryset(self):
 		return Product.objects.filter(category_slug=self.kwargs['category'])
 
+def search_products(request):
+	if request.method == "POST":
+		searched = request.POST['searched']
+		products = Product.objects.filter(name__contains=searched)
+
+		if not products.exists():
+			products = []
+
+		return render(request, 'blog/products.html', {'products': products, 'searched': searched})
+	else:
+		return redirect("lubotics:products")
+
 class CartDetail(LoginRequiredMixin, View):
 	def get(self, *args, **kwargs):
 		try:

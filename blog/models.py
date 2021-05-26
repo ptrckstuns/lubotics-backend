@@ -33,7 +33,7 @@ CATEGORY_CHOICES = (
 	('Consumer', 'Consumer'),
 	('Drones', 'Drones'),
 	('Education', 'Education'),
-	('Military', 'Military & Security'),
+	('Military', 'Military'),
 )
 CATEGORY_SLUGS = {k.lower(): v for k, v in CATEGORY_CHOICES}
 
@@ -41,7 +41,7 @@ class Product(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.TextField()
 	features = models.TextField()
-	price = models.DecimalField(max_digits=8, decimal_places=2) 
+	price = models.DecimalField(max_digits=12, decimal_places=2) 
 	category = models.CharField(choices=CATEGORY_CHOICES, max_length=25)
 	category_slug = models.CharField(default='', editable= False, max_length=25)
 	image = models.ImageField(upload_to=product_path)
@@ -93,6 +93,12 @@ class Product(models.Model):
 		return reverse("lubotics:add-to-cart", kwargs={
 			'slug': self.slug
 		})
+
+	def get_buy_now_url(self):
+		return reverse("lubotics:buy-now", kwargs={
+			'slug': self.slug
+		})
+
 	def get_remove_from_cart_url(self):
 		return reverse("lubotics:remove-from-cart", kwargs={
 			'slug': self.slug
@@ -113,6 +119,8 @@ class OrderProduct(models.Model):
 
 	def __str__(self):
 		return f"({self.product.pk}) - {self.product.name} {self.quantity}x"
+	def get_order_price(self): 
+		return self.quantity * self.product.price
 		
 class Order(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -123,6 +131,49 @@ class Order(models.Model):
 
 	def __str__(self):
 		return self.user.username
+	#total ng mga selected / checked 
+	def get_subtotal_price(self):
+		total = 0
+		for product in self.products.all():
+			total += product.get_order_price()
+		return total
+	#10000 - 1
+	#10000 * % - 2
+	#pag mas maraming binili mas maliit shipping
+
+	# kunwari 
+	# 1x nido
+	# 2x sensey
+	# 2x senpai
+
+	# 5 yung total
+	# 3 lang yung.products.all() niyan gusto mo ba kunin yung overall quantity
+   
+	# 10 * 10000 + (10000 / 10)
+	# 10 000 - 1000
+	# 11000 for 10 products
+	def get_total_quantity(self):
+		n = 0
+		for product in self.products.all():
+			n += product.quantity
+		return n
+
+	def get_shipping_fee(self):
+		# unique = len(self.products.all()) # no. of unique items
+		totaln = self.get_total_quantity() # unique * quantity #decimal
+		base = 10000
+		
+		if totaln == 0:
+			return 0
+		else:
+			return base + (base / totaln)
+		# 10000 + (10000 / 2) # 15000
+		# 10000 + (10000 / 1) = 1000 # 20k
+		# 10000 + 2000 # 12000 # okay na... di naman papansinin masyado yung formula....
+
+	def get_total_price(self):
+		return float(self.get_subtotal_price()) + float(self.get_shipping_fee())
+
 
 class Wishlist(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)

@@ -27,21 +27,21 @@
         <div class="carousel-item active">
           <div class="home-carousel-content">
             <!-- style="width:100%; margin:auto" -->
-            <a href="/pages/products.html">
+            <a href="{% url 'lubotics:products' %}">
             <img class="d-block" src="{% static '/res/images/slide2.jpg' %}" alt="1st slide">
             </a>
           </div>
         </div>
         <div class="carousel-item">
-          <a href="/pages/product.html">
+          <a href="{% url 'lubotics:products' %}">
           <img class="d-block" src="{% static '/res/images/slide1.png' %}"  alt="2nd slide">
           </a>
         </div>
       </div>
 
       <div class="text" style="text-align:center; font-size: 20px"></div> 
-      <div class="carousel-mid-left">Featured Product</div>
-      <div class="carousel-bottom-left">LUBOTIC's Featured Product of 2021</div>
+      <div class="carousel-mid-left">Upcoming Product</div>
+      <div class="carousel-bottom-left">LUBOTIC's Upcoming Product of 2021</div>
 
       <a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -64,8 +64,8 @@
   <h2>Homeschooling redefined.</h2>
     <img src="{% static '/res/images/zensey.png' %}">
   <div class="links">
-    <a class="learn-more" href="/pages/products.html">Learn more&nbsp;>
-    <a href="/pages/products.html">Buy now&nbsp;></a>
+    <a class="learn-more" href="/products/view/zen-s3y">Learn more&nbsp;>
+    <a href="/cart/add/b/zen-s3y">Buy now&nbsp;></a>
   </div>
 </section>
 
@@ -74,7 +74,7 @@
       <div class="product-small-education">
           <div class="transparency hide " id="education">
             <h3>Education</h3>
-            <h4>See our products for students and teachers.</h4><a href="/pages/products.html">Learn more&nbsp;></a>
+            <h4>See our products for students and teachers.</h4><a href="/products/education">Learn more&nbsp;></a>
           </div>
       </div>
   </div>
@@ -82,7 +82,7 @@
       <div class="product-small-drones">
         <div class="transparency hide" id="drones">
           <h3>Drones</h3>
-          <h5>Avail our hottest products for filmmaking and fun</h5><a href="/pages/products.html">Learn more&nbsp;></a>
+          <h5>Avail our hottest products for filmmaking and fun</h5><a href="/products/drones">Learn more&nbsp;></a>
         </div>
       </div>
   </div>

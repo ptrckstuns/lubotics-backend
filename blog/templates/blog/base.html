@@ -8,7 +8,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap_icons/css/bootstrap_icons.css' %}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto	" rel="stylesheet">
@@ -17,9 +16,13 @@
 	<script src="https://kit.fontawesome.com/2e0bb49b5b.js" crossorigin="anonymous"></script> <!--fa -->
     <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/script.js' %}"></script> -->
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/main.css"> -->
+
 	
+	<script type="text/javascript" src="/static/js/script.js?{% now "U" %}"/> </script>
+	<link rel="stylesheet" href="/static/css/main.css?{% now "U" %}"/>
     <!-- <link rel="import" href="blog/nav.html"> -->
     
 	{% if title %}

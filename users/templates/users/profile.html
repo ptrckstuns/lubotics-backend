@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 {% block content %}
     <!-- <h2>{{ user.username }}</h2> -->
     <!-- main -->
@@ -9,7 +10,7 @@
             <div class="col-2 card profile__card">
                 <!-- <h3> My Account </h3> -->
                 <h5 class="card-header"> My Account </h5>
-                <img class="profile__avatar rounded-circle w-75" src="{{ user.profile.image.url }}" alt="">
+                <img class="profile__avatar rounded-circle w-75 h-55 mx-auto" src="{{ user.profile.image.url }}" alt="">
                 <!-- <div class="card-title name"> Shin Yuna</div> -->
                 <h5 class="mb-3 profile__name">{{ user.get_full_name }}</h5>
                 <h6 class="card-subtitle mb-2"> <span class="text-muted"> Joined  </span> {{ user.date_joined|date }}</h6>
@@ -79,22 +80,34 @@
         
         <div id="wishlist" class="card wishlist">
             <h4 class="card-header"> Wishlist</h4>
+            {% if Wishlist %}
+              <h4>You have no items in your wishlist</h4>
+            {% endif %}
 
             {% for product in object.products.all %}
-              {% if forloop.counter0|divisibleby:4 %} 
-                <div class="row"> 
-              {% endif %} 
-                <div class="col-sm card">
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+            {% if forloop.counter0|divisibleby:4 %} 
+            <div class="row wishlist"> 
+            {% endif %} 
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+                    </a>
                     <div class="card-body"> 
-                        <div class="card-title">{{ product.name }}</div>
-                        <div class="card-text">PHP {{ product.price }}</div>
-                      </div>
-                      <a href="{{ product.get_remove_from_wishlist_url }}" class="btn btn-danger"> Remove Product</a>
+                        <div class="card-title"><b>{{ product.name }}</b></div>
+                        <div class="card-text mb-2 text-muted">&#8369; {{ product.price|floatformat:2|intcomma }}</div>
+                        
+                    </div>
+                    <div class="wishlist-buttons">
+                        <a href="{{ product.get_buy_now_url }}" class="btn btn-success">Buy now</a>
+                        <a href="{{ product.get_remove_from_wishlist_url }}" class="float-right btn btn-danger"> Remove Product</a>
+
+                    </div>
                 </div>
-              {% if forloop.counter|divisibleby:4 or forloop.last %}
-                </div>
-              {%  endif %}
+            </div>
+            {% if forloop.counter|divisibleby:4 or forloop.last %}
+            </div>
+            {%  endif %}
             {% endfor %}
         </div>
     </div>

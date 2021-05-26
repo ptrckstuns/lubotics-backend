@@ -120,7 +120,29 @@ def add_to_cart(request, slug):
 		order = Order.objects.create(user = request.user, ordered_date=ordered_date)
 		order.products.add(order_product)
 	messages.success(request, f'Added item to cart')
-	return redirect("lubotics:product", slug=slug)
+	# return redirect("lubotics:product", slug=slug)
+	return redirect("lubotics:products")
+
+@login_required
+def buy_now(request, slug):
+	product = get_object_or_404(Product, slug=slug)
+	order_product, created = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)
+	order_qs = Order.objects.filter(user=request.user, ordered=False)
+
+	if order_qs.exists():
+		order = order_qs[0]
+		if order.products.filter(product__slug=product.slug).exists():
+			order_product.quantity += 1
+			order_product.save()
+		else:
+			order.products.add(order_product)
+	else:
+		ordered_date = timezone.now()
+		order = Order.objects.create(user = request.user, ordered_date=ordered_date)
+		order.products.add(order_product)
+	messages.success(request, f'Added item to cart')
+	# return redirect("lubotics:product", slug=slug)
+	return redirect("lubotics:cart")
 
 @login_required
 def add_to_wishlist(request, slug):
@@ -140,7 +162,8 @@ def add_to_wishlist(request, slug):
 		wishlist.products.add(product)
 		messages.success(request, f'Added product to wishlist')
 
-	return redirect("lubotics:product", slug=slug)
+	# return redirect("lubotics:product", slug=slug)
+	return redirect("lubotics:products")
 	
 @login_required
 def remove_from_cart(request, slug):

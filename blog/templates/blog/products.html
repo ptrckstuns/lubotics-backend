@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <div class="products container-fluid">
   <div class="row">
@@ -14,7 +15,7 @@
         </div>
         <img src="{% static 'res/images/ucd.jpg' %}" alt="Card image">
         <div class="card-body">
-          <a href="/pages/product.html" class="btn btn-primary">View Product</a>
+          <a href="/products/view/ucd" class="btn btn-primary">View Product</a>
         </div>
       </div>
       <div class="card">
@@ -27,7 +28,7 @@
         </div>
         <img src="{% static 'res/images/crone.jpg' %}" alt="Card image">
         <div class="card-body">
-          <a href="/pages/product.html" class="btn btn-primary">View Product</a>
+          <a href="/products/view/crone" class="btn btn-primary">View Product</a>
         </div>
       </div>
     </aside>
@@ -51,29 +52,45 @@
         </div>       
       </form>
       
+      <!-- Search Result -->
       {% if searched %}
-      <div>
-
-        <h3> Searched for {{ searched }}</h3>
-        <br>
-        
-      </div>
+        <div>
+          <br>
+          <h4> Searched for {{ searched }}</h4>
+          <br>
+        </div>
       {% endif %}
+
+      <!-- No products -->
+      {% if not products %}
+        <div>
+          <br>
+          <center>
+            <h4> There are no products in stock. </h4>
+          </center>
+        </div>
+        <br>
+      {% endif %}      
+
       <!-- LOOPING THE PRODUCTS HERE -->
+      
       {% for product in products %}
         {% if forloop.counter0|divisibleby:3 %} <div class="row product-list"> 
         {% endif %} 
       
         <div class="col-md-4">
-          <div class="card">
+          <div class="card product-card"> 
+            <a href="{{ product.get_absolute_url }}">
+              <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+            </a>
             
-            <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
             
             <div class="card-body">
-              <a href="{{ product.get_absolute_url }}" class="card-title"> {{ product.name }}</a>
-              <h6 class="card-subtitle mb-2 text-muted">{{product.price}}</h6>
+              <a href="{{ product.get_absolute_url }}" style="font-size: 1.3rem;"> {{ product.name }}</a>
+              <h6 class="card-subtitle mb-2 text-muted">&#8369; {{ product.price|floatformat:2|intcomma }}</h6>
               <p class="card-text">
-              {{product.description}}
+              {{ product.description|slice:":70" }} 
+              {% if product.description|length > 70 %} [...] {% endif %}
               </p>
               <a href="{{ product.get_add_to_wishlist_url }}" class="btn wish-color">Add to Wishlist</a>
               <a href="{{ product.get_add_to_cart_url }}" class="btn cart-color">Add to Cart</a>
@@ -85,8 +102,11 @@
           </div>
         {%  endif %}
       {% endfor %}
+      
+      <br><br>
     </main>
-</div>
+
+  </div>
 
 </div>
 {% endblock content %}

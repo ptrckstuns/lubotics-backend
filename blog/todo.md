@@ -1,7 +1,7 @@
 # DATABASE
 - [x] User model DB
 - [x] Products model DB
-- [ ] Orders model DB
+- [x] Orders model DB
 
 # FORMS
 - [ ] cart form

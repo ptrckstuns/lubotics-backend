@@ -4,6 +4,7 @@ body {
   font-family: 'Roboto';
   overflow-x: hidden;
   overflow-y: scroll;
+  zoom: 0.90; 
 }
 
 /* HOME  */

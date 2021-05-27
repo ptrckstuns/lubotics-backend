@@ -18,14 +18,11 @@ class Post(models.Model):
 		return self.title
 
 
-
 def product_path(instance, filename):
     return f'products/{instance.category}/{instance.name}/{filename}'
 
-	
 def profile_path(instance, filename):
     return f'profile/{instance.user.username}/{filename}'
-
 
 
 CATEGORY_CHOICES = (
@@ -62,8 +59,6 @@ class Product(models.Model):
 				return slug
 
 	def _generate_slug(self):
-		# max_length = self._meta.get_field('slug').max_length
-		# slug_candidate = slug_original = slugify(self.title)[:max_length]
 		slug_candidate = slug_original = slugify(self.name)
 		for i in itertools.count(1):
 			if not Product.objects.filter(slug=slug_candidate).exists():
@@ -111,6 +106,8 @@ class Product(models.Model):
 		return reverse("lubotics:remove-from-wishlist", kwargs={
 			'slug': self.slug
 		})
+
+
 class OrderProduct(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -137,21 +134,7 @@ class Order(models.Model):
 		for product in self.products.all():
 			total += product.get_order_price()
 		return total
-	#10000 - 1
-	#10000 * % - 2
-	#pag mas maraming binili mas maliit shipping
 
-	# kunwari 
-	# 1x nido
-	# 2x sensey
-	# 2x senpai
-
-	# 5 yung total
-	# 3 lang yung.products.all() niyan gusto mo ba kunin yung overall quantity
-   
-	# 10 * 10000 + (10000 / 10)
-	# 10 000 - 1000
-	# 11000 for 10 products
 	def get_total_quantity(self):
 		n = 0
 		for product in self.products.all():
@@ -169,7 +152,6 @@ class Order(models.Model):
 			return base + (base / totaln)
 		# 10000 + (10000 / 2) # 15000
 		# 10000 + (10000 / 1) = 1000 # 20k
-		# 10000 + 2000 # 12000 # okay na... di naman papansinin masyado yung formula....
 
 	def get_total_price(self):
 		return float(self.get_subtotal_price()) + float(self.get_shipping_fee())
@@ -181,40 +163,3 @@ class Wishlist(models.Model):
 
 	def __str__(self):
 		return self.user.username
-# class Profile(models.Model):
-# 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-# 	image = models.ImageField(upload_to=profile_path)
-
-# 	first_name = models.CharField(max_length=100)
-# 	last_name = models.CharField(max_length=100)
-	
-# 	birth_date = models.DateField()
-# 	date_joined = models.DateTimeField(default=timezone.now)
-	
-# 	address = models.CharField(max_length=250)
-# 	contact_number = PhoneNumberField()
-# 	# wishlist = models.ManyToManyField(Product, blank = True, related_name='Profile.wishlist')
-# 	# cart = models.ManyToManyField(Product, blank = True, related_name='Profile.cart')
-# 	# purchases = models.ManyToManyField(Product, blank = True, related_name='Profile.purchases')
-	
-# 	# AVATAR image
-# 	# bday
-# 	# date joined (yung kay coreyMS)
-# 	# reference user
-# 	def fullname(self):
-# 		return f'{self.first_name} {self.last_name}'
-
-# 	def __str__(self): 
-# 		return self.user.username
-
-# class Cart(models.Model):
-# 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-# 	items = models.ManyToManyField(Product, blank = True, related_name='Cart.items')
-# 	quantity = model.Positi­veI­nte­ger­Field(default=0)
-
-# class Orders(model.s.Model):
-# 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-# 	items = models.ManyToManyField(Product, blank = True, related_name='Orders.items')
-# 	quantity = model.Positi­veI­nte­ger­Field()
-	# random_id 
-	# eta

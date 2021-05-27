@@ -1,4 +1,4 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 # from django.core.exeptions import ObjectDoesNotExist
 from .models import Post, Product, OrderProduct, Order, Wishlist
 # from django.http import HttpResponse
@@ -31,9 +31,6 @@ def products(request):
 def contact(request):
 	return render(request, 'blog/about.html', {'title': 'Contact'})
 
-def chlog(request):
-	return render(request, 'blog/chlog.html', {'title': 'Changelog'})
-
 def cart(request):
 	return render(request, 'blog/cart.html', {'title': 'My Cart'})	
 
@@ -49,21 +46,7 @@ def signup(request):
 def nav(request):
 	return render(request, 'blog/nav.html', {'title': 'Nav template'})
 
-def testproduct(request):
-	return render(request, 'blog/testproduct.html', {'products': Product.objects.all()})
 
-def testproduct1(request):
-	return render(request, 'blog/testproduct1.html', {'products': Product.objects.all()})
-
-# try
-class TestProductView(generic.ListView):
-    template_name = 'blog/testproduct2.jinja'
-    context_object_name = 'products'
-
-    def get_queryset(self):
-        return Product.objects.all()
-		# """Return the last five published questions."""
-        # return Question.objects.order_by('-pub_date')[:5]
 class ProductCategoryView(generic.ListView):
 	template_name = 'blog/products.html'
 	context_object_name = 'products'
@@ -88,11 +71,11 @@ class CartDetail(LoginRequiredMixin, View):
 		try:
 			order = Order.objects.get(user=self.request.user, ordered=False)
 		except Exception:
-			messages.warning(self.request, "You do not have any orders")
 			order = []
 			# return redirect("/")
-		else:
+		finally:
 			context = {
+				'title': 'My Cart',
 				'object': order
 			}
 			return render(self.request, 'blog/cart.html', context)
@@ -174,6 +157,7 @@ def remove_from_cart(request, slug):
 		order = order_qs[0]
 		if order.products.filter(product__slug=product.slug).exists():
 			order_product = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)[0]
+			order_product.delete() # remove the order_product instance in the array
 			order.products.remove(order_product)
 		else:
 			messages.warning(request, f'Order does not contain this item')
@@ -185,6 +169,25 @@ def remove_from_cart(request, slug):
 
 	messages.warning(request, f'Removed item from cart')
 	return redirect("lubotics:cart")
+
+@login_required
+def checkout(request):
+	order_qs = Order.objects.filter(user=request.user, ordered=False)
+	if order_qs.exists():
+		order = order_qs[0]
+
+		order_products = order.products.all()
+		order_products.update(ordered=True)
+		for order_product in order_products:
+			order_product.save()
+		order.ordered = True
+		order.save()
+		
+		messages.success(request, f'Your order was successful!!')
+		return redirect("lubotics:cart")
+	else:
+		messages.warning(request, f'User does not have an order')
+		return redirect("lubotics:cart")
 
 @login_required
 def remove_from_wishlist(request, slug):

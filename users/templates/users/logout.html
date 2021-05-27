@@ -7,35 +7,8 @@
 		<div class="alert alert-info">
 			You have been logged out
 		</div>
-		<!-- <div class="border-top pt-3">
-			<small class="text-muted">
-				<a href="{% url 'login' %}">Log In Again</a>
-			</small>
-		</div> -->
+
 	</center>
 	<a href="{% url 'login' %}"> Login </a>
-	<!-- <main class="login-main">
-		<div class="content-section login-form">
-			<form method="POST">
-				{% csrf_token %}
-				<h1> <img src="{% static 'res/icons/blueFinal.png' %}"> LUBOTICS</h1>
-				<h5> droidware technologies</h5>
-				<fieldset class=form-group>
-					<legend class="border-bottom mb-4">Log In</legend>
-					{{ form|crispy }}
-				</fieldset>
-				<div class="form-group">
-					<button class="btn login-btn-color" type="submit">Login</button>				
-				</div>
-	
-			</form>
-			<div class="border-top pt-3">
-				<small class="text-muted">
-					Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-				</small>
-			</div>
-	
-		</div>
-	</div>
-</main> -->
+
 {% endblock content %}

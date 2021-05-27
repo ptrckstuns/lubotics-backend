@@ -32,10 +32,6 @@ def register(request):
 
 	return render(request, 'users/register.html', {'form': form})
 
-# def logout(request):
-# 	form = UserRegisterForm()	
-# 	return render(request, 'users/logout.html', {'form': form})
-
 # @login_required
 class ProfileView(LoginRequiredMixin, View):
 	def get(self, *args, **kwargs): # get wishlist
@@ -46,6 +42,7 @@ class ProfileView(LoginRequiredMixin, View):
 			wishlist = []
 			# return redirect("/")
 		context = {
+			'title': 'Profile',
 			'object': wishlist
 		}
 	# return render(request, 'users/profile.html',  {'title': 'Profile'})

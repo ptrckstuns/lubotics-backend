@@ -29,7 +29,7 @@ class ProfileUpdateForm(forms.ModelForm):
 	# birth_date = forms.DateField()
 	class Meta:
 		model = Profile
-		fields = ['image', 'birth_date', 'address', 'contact_number']
+		fields = ['birth_date', 'address', 'contact_number', 'image']
 		widgets = {
             'birth_date': DateInput(),
         }

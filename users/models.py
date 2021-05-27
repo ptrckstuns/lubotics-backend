@@ -9,25 +9,14 @@ from PIL import Image
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	# user = models.ForeignKey(User, on_delete=models.CASCADE)
-	# image = models.ImageField(upload_to=profile_path)
 	image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
-	# birth_date = models.DateField(blank=True)
 	birth_date =models.DateField(auto_now=False, null=True, blank=True)
 	# date_joined = models.DateTimeField(default=timezone.now)
 	
 	address = models.CharField(max_length=250, blank=True)
 	contact_number = PhoneNumberField(blank=True)
-	
-	# wishlist = models.ManyToManyField(Product, related_name="user_wishlist", blank = True, null = True)
-	# cart = models.ManyToManyField(Product, blank = True, related_name='Profile.cart')
-	# purchases = models.ManyToManyField(Product, blank = True, related_name='Profile.purchases')
-	
-	# AVATAR image
-	# bday
-	# date joined (yung kay coreyMS)
-	# reference user
+
 
 	def fullname(self):
 		return f'{self.first_name} {self.last_name}'

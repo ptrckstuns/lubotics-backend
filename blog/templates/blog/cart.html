@@ -3,8 +3,9 @@
 {% load humanize %}
 
 {% block content %}
-    <div class="cart container">
+    <div class="cart container card">
         <h2 class="cart__header">My Cart</h2>
+        {% if object.products.all|length > 0 %}
         
 
         <div class="row cart__select">
@@ -14,8 +15,20 @@
             </div>
             <button type="button" class="btn btn-link col-6" onClick="removeCartProducts()">Remove selected products</button>
         </div>
+        {% endif %}
 
-        
+        <!-- No products -->
+        {% if not object.products.all %}
+        <div>
+            <br>
+            <center>
+            <h5> Your cart is empty. </h5>
+            </center>
+        </div>
+        <br>
+        {% endif %}   
+
+
         {% for order_product in object.products.all %}
             <div class="cart-item row">
                 {% if select_all %}
@@ -35,8 +48,9 @@
                 </div>
             </div>
         {% endfor %}
-        
 
+        
+        {% if object.products.all|length > 0 %}
         <div class="cart-summary">
             <h2>Order Summary</h2>
 
@@ -54,10 +68,33 @@
                     <p class="cart-summary__category"> Total Price </p>
                     <p class="float-right cart-summary__total-price">  &#8369; {{object.get_total_price|floatformat:2|intcomma}}</p>
                 </div>
-                <a href="" class="btn btn-success float-right"> Proceed to Checkout</a>
+                <a href="/cart/checkout" class="btn btn-success float-right"> Proceed to Checkout</a>
             </div>
 
         </div>
+        {% else %}
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+
+                <div class="cart-summary__details">
+                    <div>
+                        <p class="cart-summary__category"> Subtotal Price </p>
+                        <p class="text-muted float-right "> &#8369; {{0|floatformat:2|intcomma}}</p>
+                    </div>
+                    <div>
+                        <p class="cart-summary__category"> Shipping Fee </p>
+                        <p class="text-muted float-right"> &#8369; {{0|floatformat:2|intcomma }}</p>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="cart-summary__category"> Total Price </p>
+                        <p class="float-right cart-summary__total-price">  &#8369; {{0|floatformat:2|intcomma}}</p>
+                    </div>
+                    <a href="/cart/checkout" class="btn btn-success float-right"> Proceed to Checkout</a>
+                </div>
+
+            </div>
+        {% endif %}
     </div>
 
 

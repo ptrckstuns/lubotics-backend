@@ -2,10 +2,11 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+
 <div class="products container-fluid">
   <div class="row">
     
-    <aside class="col-3">
+    <aside class="col-3 mr-3">
       <div class="card">
         <h4 class="card-header">Featured Robot </h4>
         <div class="card-body">
@@ -39,14 +40,14 @@
       <div class="row">
           {% csrf_token %}
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Product" aria-label="" 
+            <input type="text" class="form-control" placeholder=" Search Product" aria-label="" 
                     aria-describedby="basic-addon1" name="searched" 
                     {% if searched %}
                     value="{{searched}}"
                     {% endif %}
             >
             <div class="input-group-append">
-              <button class="btn btn-success" type="submit"> Search </button>
+              <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Search  </button>
             </div>
           </div>
         </div>       
@@ -78,8 +79,8 @@
         {% if forloop.counter0|divisibleby:3 %} <div class="row product-list"> 
         {% endif %} 
       
-        <div class="col-md-4">
-          <div class="card product-card"> 
+        <div class="col-md-4 d-flex align-items-stretch">
+          <div class="card product-card mx-auto" > 
             <a href="{{ product.get_absolute_url }}">
               <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
             </a>
@@ -88,12 +89,15 @@
             <div class="card-body">
               <a href="{{ product.get_absolute_url }}" style="font-size: 1.3rem;"> {{ product.name }}</a>
               <h6 class="card-subtitle mb-2 text-muted">&#8369; {{ product.price|floatformat:2|intcomma }}</h6>
+              
               <p class="card-text">
-              {{ product.description|slice:":70" }} 
-              {% if product.description|length > 70 %} [...] {% endif %}
+                {{ product.description|slice:":70" }} 
+                {% if product.description|length > 70 %} [...] {% endif %}
               </p>
-              <a href="{{ product.get_add_to_wishlist_url }}" class="btn wish-color">Add to Wishlist</a>
-              <a href="{{ product.get_add_to_cart_url }}" class="btn cart-color">Add to Cart</a>
+            </div>
+            <div>
+              <a href="{{ product.get_add_to_wishlist_url }}" class="btn wish-color float-left w-50">Add to Wishlist</a>
+              <a href="{{ product.get_add_to_cart_url }}" class="btn cart-color w-50">Add to Cart</a>
             </div>
             
           </div>

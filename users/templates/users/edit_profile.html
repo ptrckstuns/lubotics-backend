@@ -2,10 +2,9 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form method="POST" enctype="multipart/form-data" class="login-form">
+<form method="POST" enctype="multipart/form-data" class="profile-form">
     {% csrf_token %}
-    <h1> <img src="{% static 'res/icons/blueFinal.png' %}"> LUBOTICS</h1>
-    <h5> droidware technologies</h5>
+
     <fieldset class=form-group>
         <legend class="border-bottom mb-4">Edit Profile Info</legend>
         {{ u_form|crispy }}

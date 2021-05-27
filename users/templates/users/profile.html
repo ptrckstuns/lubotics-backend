@@ -3,15 +3,14 @@
 {% load crispy_forms_tags %}
 {% load humanize %}
 {% block content %}
-    <!-- <h2>{{ user.username }}</h2> -->
-    <!-- main -->
+  
     <div class="container-fluid profile">
         <div class="row">
             <div class="col-2 card profile__card">
-                <!-- <h3> My Account </h3> -->
+                
                 <h5 class="card-header"> My Account </h5>
                 <img class="profile__avatar rounded-circle w-75 h-55 mx-auto" src="{{ user.profile.image.url }}" alt="">
-                <!-- <div class="card-title name"> Shin Yuna</div> -->
+                
                 <h5 class="mb-3 profile__name">{{ user.get_full_name }}</h5>
                 <h6 class="card-subtitle mb-2"> <span class="text-muted"> Joined  </span> {{ user.date_joined|date }}</h6>
             </div>
@@ -45,7 +44,7 @@
                             <h5 class="card-title align-right"> {{ user.date_joined }}</h5>
                         </div>
                     </div>
-                  <!-- <a href="#!" class="btn btn-primary">Go somewhere</a> -->
+                  
 
 
                 </div>
@@ -98,10 +97,9 @@
                         <div class="card-text mb-2 text-muted">&#8369; {{ product.price|floatformat:2|intcomma }}</div>
                         
                     </div>
-                    <div class="wishlist-buttons">
-                        <a href="{{ product.get_buy_now_url }}" class="btn btn-success">Buy now</a>
-                        <a href="{{ product.get_remove_from_wishlist_url }}" class="float-right btn btn-danger"> Remove Product</a>
-
+                    <div>
+                        <a href="{{ product.get_buy_now_url }}" class="btn btn-success float-left w-50">Buy now</a>
+                        <a href="{{ product.get_remove_from_wishlist_url }}" class="float-right btn btn-danger w-50"> Remove Product</a>
                     </div>
                 </div>
             </div>

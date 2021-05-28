@@ -5,6 +5,7 @@ Lubotics is an e-commerce site of robot products.
 Developed by Jhon Bayquen, Patrick Castro, Angelo Erasmo, Julius Nocon, Neal San Andres.
 *Note: For educational purposes only*
 
+### Web app: https://lubotics.herokuapp.com/
 
 # Project Overview and Goals
 

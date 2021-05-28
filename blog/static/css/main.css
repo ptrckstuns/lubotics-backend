@@ -49,7 +49,19 @@ nav {
   background: white;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
-
+.nav-icons {
+  margin-top: 0.6rem;
+  width: 1.33rem;
+  height: 1.33rem;
+  filter: invert(52%) sepia(0%) saturate(2125%) hue-rotate(175deg) brightness(113%) contrast(106%);
+}
+.search-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  filter: invert(98%) sepia(5%) saturate(68%) hue-rotate(85deg) brightness(118%) contrast(100%);
+  margin-right: 0.33rem;
+  margin-top: -0.2rem;
+}
 .carousel-container {
   width: 50%;
   /* padding: 0 16px; */

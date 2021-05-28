@@ -133,6 +133,11 @@ STATIC_URL = '/static/'
 # Heroku Static Files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #After login, go to this page

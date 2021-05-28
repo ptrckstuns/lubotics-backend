@@ -6,6 +6,7 @@ django-bs-icons==0.2.2
 django-crispy-forms==1.11.2
 django-phonenumber-field==5.1.0
 future==0.18.2
+gunicorn==20.1.0
 idna==2.10
 pefile==2021.5.13
 phonenumbers==8.12.23

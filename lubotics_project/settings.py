@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_material_icons',
     'django_bootstrap_icons',
     'bs_icons',
     'django.contrib.humanize',

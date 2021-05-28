@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_material_icons',
     'django_bootstrap_icons',
     'bs_icons',
     'django.contrib.humanize',
@@ -139,7 +140,7 @@ LOGIN_REDIRECT_URL = 'lubotics:home'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
 
-BS_ICONS_BASE_URL = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/'
+BS_ICONS_BASE_URL = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/'
 
 MD_ICONS_BASE_URL = 'https://cdn.jsdelivr.net/npm/@mdi/svg@5.9.55/'
 

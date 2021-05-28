@@ -57,11 +57,25 @@ class ProductCategoryView(generic.ListView):
 def search_products(request):
 	if request.method == "POST":
 		searched = request.POST['searched']
-		products = Product.objects.filter(name__contains=searched)
+		if searched == " ":
+			return redirect("lubotics:products")
+			
+		products = []
+		products_set = set()
+		products_by_name = Product.objects.filter(name__contains=searched)
+		products_by_description = Product.objects.filter(description__contains=searched)
+		products_by_features = Product.objects.filter(features__contains=searched)
 
-		if not products.exists():
-			products = []
+		l = [ products_by_name, products_by_description, products_by_features]
 
+		for product_filter in l:
+			if product_filter.exists():
+				for product in product_filter:
+					products_set.add(product)
+			
+		if len(products_set):
+			products = list(products_set)
+		
 		return render(request, 'blog/products.html', {'products': products, 'searched': searched})
 	else:
 		return redirect("lubotics:products")

@@ -127,6 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Heroku Static Files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #After login, go to this page

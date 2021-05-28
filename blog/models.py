@@ -66,6 +66,7 @@ class Product(models.Model):
 			slug_candidate = '{}-{}'.format(slug_original, i)
 		return slug_candidate
 
+	# Also for AWS S3
 	def save(self, *args, **kwargs):
 		if not self.pk:
 			self.slug = self._generate_slug()

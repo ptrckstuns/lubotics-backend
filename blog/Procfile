@@ -1,0 +1,1 @@
+web: gunicorn lubotics_project.wsgi
